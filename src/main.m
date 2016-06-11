@@ -1,19 +1,19 @@
 function Main(command, varargin)
     switch command
         case 'train'
-            cmd_train(varargin);
+            cmd_train(varargin{:});
         case 'test'
-            cmd_test(varargin);
+            cmd_test(varargin{:});
         case 'cam'
-            cmd_cam(varargin);
+            cmd_cam(varargin{:});
         case 'video'
-            cmd_video(varargin);
+            cmd_video(varargin{:});
         otherwise
             error(['Unknown command: ' command]);
     end
 end
 
-function cmd_train(img_list, label_dir, method)
+function cmd_train(img_list, label_dir, method, model_file)
     if ~exist('img_list', 'var')
         img_list = 'ImgTrainList.txt';
     end
@@ -22,6 +22,9 @@ function cmd_train(img_list, label_dir, method)
     end
     if ~exist('method', 'var')
         method = 'ANN';
+    end
+    if ~exist('model', 'var')
+        model_file = method;
     end
 
     [points, features, degrees] = load_trainset(img_list, label_dir);
@@ -38,6 +41,8 @@ function cmd_train(img_list, label_dir, method)
         otherwise
             error(['Unknown method: ' method]);
     end
+
+    save(model_file, 'model');
 end
 
 function cmd_test(img_list, label_dir, method, model_file)
