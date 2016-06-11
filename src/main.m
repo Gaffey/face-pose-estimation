@@ -83,6 +83,9 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
             error(['Unknown method: ' method]);
     end
 
+    degrees(degrees < -67) = -67;
+    degrees(degrees > 67) = 67;
+
     fout = fopen('FacePosition.txt', 'w');
     for k = 1:size(filenames, 1)
         fprintf(fout, '%s ', filenames{k});
@@ -107,6 +110,8 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
     guesses(degrees >= 26 & degrees < 37.5) = 30;
     guesses(degrees >= 37.5 & degrees < 56) = 45;
     guesses(degrees >= 56) = 67;
+
+    % [degrees guesses]
 
     err = nanmean((degrees - guesses).^2);
     disp(['Estimated MSE = ' num2str(err)]);
