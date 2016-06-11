@@ -2,7 +2,7 @@ function model = train(data, degrees)
     sigma_f = 1250;
     sigma_n = 0.28;
     l = 0.5;
-    K_new = SEKernel(sigma_f, l, data, data);
+    K_new = GPR.SEKernel(sigma_f, l, data, data);
 
     model = struct('sigma_f', sigma_f, ...
                    'sigma_n', sigma_n, ...

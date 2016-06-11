@@ -23,7 +23,7 @@ function cmd_train(img_list, label_dir, method, model_file)
     if ~exist('method', 'var')
         method = 'ANN';
     end
-    if ~exist('model', 'var')
+    if ~exist('model_file', 'var')
         model_file = method;
     end
 
@@ -55,7 +55,7 @@ function cmd_test(img_list, label_dir, method, model_file)
     if ~exist('method', 'var')
         method = 'ANN';
     end
-    if ~exist('model', 'var')
+    if ~exist('model_file', 'var')
         model_file = method;
     end
 
