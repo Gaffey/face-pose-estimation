@@ -1,7 +1,12 @@
 function [points, features] = load_data(filename, label_dir, unify)
-    [~, name, ext] = fileparts(filename);
+    [filedir, name, ext] = fileparts(filename);
 
-    points = load(fullfile(label_dir, [name '.txt']));
+    points_file = fullfile(label_dir, [name '.txt']);
+    if ~exist(points_file, 'file')
+        % Fallback to the default place.
+        points_file = fullfile(filedir, [name '.txt']);
+    end
+    points = load(points_file);
 
     midx = (points(35, 1) + points(45, 1) + points(48, 1) + points(41, 1)) / 4;
     features = [
