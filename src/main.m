@@ -30,7 +30,8 @@ function cmd_train(img_list, label_dir, method, model_file, unify)
         unify = false;
     end
 
-    [points, features, degrees] = load_trainset(img_list, label_dir, unify);
+    filenames = importdata(img_list);
+    [points, features, degrees] = load_trainset(filenames, label_dir, unify);
 
     switch method
         case 'GPR'
@@ -65,7 +66,8 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
         unify = false;
     end
 
-    [points, features] = load_testset(img_list, label_dir, unify);
+    filenames = importdata(img_list);
+    [points, features] = load_testset(filenames, label_dir, unify);
     load(model_file, 'model')
 
     switch method

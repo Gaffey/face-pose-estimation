@@ -1,5 +1,4 @@
-function [P, F, degrees] = load_trainset(img_list, label_dir, unify)
-    filenames = importdata(img_list);
+function [P, F, degrees] = load_trainset(filenames, label_dir, unify)
     count = size(filenames, 1);
 
     P = zeros(count, 98);
