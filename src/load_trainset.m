@@ -4,7 +4,7 @@ function [P, F, degrees] = load_trainset(img_list, label_dir)
 
     P = zeros(count, 98);
     F = zeros(count, 5);
-    degrees = zeros(count, 1)
+    degrees = zeros(count, 1);
 
     for k = 1:count
         filename = filenames{k};

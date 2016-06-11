@@ -8,8 +8,8 @@ function model = train(data, degrees)
     %   xs - input data.
     %   ys - target data.
 
-    x = xs';
-    t = ys';
+    x = data';
+    t = degrees';
 
     % Choose a Training Function
     % For a list of all training functions type: help nntrain

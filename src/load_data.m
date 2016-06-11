@@ -2,6 +2,7 @@ function [points, features] = load_data(filename, label_dir)
     [~, name, ext] = fileparts(filename);
 
     points = load(fullfile(label_dir, [name '.txt']));
+
     midx = (points(35, 1) + points(45, 1) + points(48, 1) + points(41, 1)) / 4;
     features = [
         abs(points(1, 1) - points(5, 1)) / abs(points(6, 1) - points(10, 1))...
@@ -11,4 +12,8 @@ function [points, features] = load_data(filename, label_dir)
         abs(midx - points(32, 1)) / abs(midx - points(38, 1))...
     ];
 
-    features(data(:,3) < 0) = data(data(:,3) < 0) + pi;
+    hight = abs(mean(points([47:49], 2)) - mean(points([3 8], 2)));
+    points = points / hight;
+    points = bsxfun(@minus, points, mean(points));
+
+    features(features(:,3) < 0) = features(features(:,3) < 0) + pi;
