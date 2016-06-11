@@ -1,2 +1,3 @@
-points/
-data/
+data/**/*.tif
+data/**/*.bmp
+data/**/FaceFP.txt
