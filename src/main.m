@@ -13,7 +13,7 @@ function Main(command, varargin)
     end
 end
 
-function cmd_train(img_list, label_dir, method, model_file)
+function cmd_train(img_list, label_dir, method, model_file, unify)
     if ~exist('img_list', 'var')
         img_list = 'ImgTrainList.txt';
     end
@@ -26,8 +26,11 @@ function cmd_train(img_list, label_dir, method, model_file)
     if ~exist('model_file', 'var')
         model_file = method;
     end
+    if ~exist('unify', 'var')
+        unify = false;
+    end
 
-    [points, features, degrees] = load_trainset(img_list, label_dir);
+    [points, features, degrees] = load_trainset(img_list, label_dir, unify);
 
     switch method
         case 'GPR'
@@ -45,7 +48,7 @@ function cmd_train(img_list, label_dir, method, model_file)
     save(model_file, 'model');
 end
 
-function cmd_test(img_list, label_dir, method, model_file)
+function cmd_test(img_list, label_dir, method, model_file, unify)
     if ~exist('img_list', 'var')
         img_list = 'ImgTrainList.txt';
     end
@@ -58,8 +61,11 @@ function cmd_test(img_list, label_dir, method, model_file)
     if ~exist('model_file', 'var')
         model_file = method;
     end
+    if ~exist('unify', 'var')
+        unify = false;
+    end
 
-    [points, features] = load_testset(img_list, label_dir);
+    [points, features] = load_testset(img_list, label_dir, unify);
     load(model_file, 'model')
 
     switch method
@@ -74,6 +80,9 @@ function cmd_test(img_list, label_dir, method, model_file)
         otherwise
             error(['Unknown method: ' method]);
     end
+
+    % fout = fopen('FacePosition.txt', 'w');
+
 end
 
 function cmd_cam()

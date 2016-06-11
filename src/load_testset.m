@@ -1,4 +1,4 @@
-function [P, F] = load_testset(img_list, label_dir)
+function [P, F] = load_testset(img_list, label_dir, unify)
     filenames = importdata(img_list);
     count = size(filenames, 1);
 
@@ -7,7 +7,7 @@ function [P, F] = load_testset(img_list, label_dir)
 
     for k = 1:count
         filename = filenames{k};
-        [points, features] = load_data(filename, label_dir);
+        [points, features] = load_data(filename, label_dir, unify);
 
         P(k, :) = points(:);
         F(k, :) = features;
