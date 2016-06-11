@@ -5,6 +5,13 @@ function [points, features] = load_data(filename, label_dir, unify)
     if ~exist(points_file, 'file')
         % Fallback to the default place.
         points_file = fullfile(filedir, [name '.txt']);
+
+        if ~exist(points_file, 'file')
+            warning(['Failed to find the points file for ' filename]);
+            points = nan(49, 2);
+            features = nan(1, 5);
+            return
+        end
     end
     points = load(points_file);
 

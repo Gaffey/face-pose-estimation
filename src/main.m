@@ -83,8 +83,33 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
             error(['Unknown method: ' method]);
     end
 
-    % fout = fopen('FacePosition.txt', 'w');
+    fout = fopen('FacePosition.txt', 'w');
+    for k = 1:size(filenames, 1)
+        fprintf(fout, '%s ', filenames{k});
 
+        degree = degrees(k);
+        if isnan(degree)
+            fprintf(fout, 'no_point\n');
+        else
+            fprintf(fout, '%.2f\n', degree);
+        end
+    end
+    fclose(fout);
+
+    guesses = zeros(size(degrees));
+    guesses(degrees < -56) = -67;
+    guesses(degrees >= -56 & degrees < -37.5) = -45;
+    guesses(degrees >= -37.5 & degrees < -26) = -30;
+    guesses(degrees >= -26 & degrees < -18.5) = -22;
+    guesses(degrees >= -18.5 & degrees < -7.5) = -15;
+    guesses(degrees >= 7.5 & degrees < 18.5) = 15;
+    guesses(degrees >= 18.5 & degrees < 26) = 22;
+    guesses(degrees >= 26 & degrees < 37.5) = 30;
+    guesses(degrees >= 37.5 & degrees < 56) = 45;
+    guesses(degrees >= 56) = 67;
+
+    err = nanmean((degrees - guesses).^2);
+    disp(['Estimated MSE = ' num2str(err)]);
 end
 
 function cmd_cam()
