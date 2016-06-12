@@ -123,7 +123,7 @@ end
 
 function cmd_video(filename)
     if ~exist('filename', 'var')
-        filename = 'detect/speak.mp4';
+        filename = 'detect/speak.m4v';
     end
 
     degrees = [];
@@ -136,12 +136,12 @@ function cmd_video(filename)
         frame = imresize(frame, 0.25);
         imshow(frame);
         imwrite(frame, 'detect/snapshot.jpg', 'jpg');
-        system('detect/IntraFaceDetector.exe');
+        system('cd detect & IntraFaceDetector.exe');
 
-        points = load_testset('detect/snapshot.jpg', 'detect', 'true');
+        points = load_testset({'detect\snapshot.jpg'}, 'detect', 'true');
         degree = ANN.estimate(model, points);
         degrees(k) = degree;
-        title(['Angle = ' num2str(andegreegle) ' degree']);
+        title(['Angle = ' num2str(degree) ' degree']);
         drawnow
     end
 
