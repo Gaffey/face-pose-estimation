@@ -1,0 +1,38 @@
+main <command> [<args>]
+
+main train [img_list [label_dir [method [model_file [unify]]]]]
+main test [img_list [label_dir [method [model_file [unify]]]]]
+    训练/测试。
+
+    img_list
+        图片路径文件，默认为 ImgList.txt。
+
+    label_dir
+        关键点文件所在路径，默认为 label。
+
+    method
+        采用的方法，可能的取值有：
+
+        ANN（默认）
+        GPR
+        poly
+        LS
+
+    model_file
+        输入/输出模型文件名，默认与 method 相同。
+        若没有后缀名，则会自动补上 ".mat" 后缀。
+
+    unify
+        是否对坐标去均值 & 高度归一化，可能的取值有：
+
+        false（默认）
+        true
+
+main cam
+    摄像头实时监测。
+
+main video [filename]
+    视频监测。
+
+    filename
+        视频文件路径，默认为 detect/speak.m4v。

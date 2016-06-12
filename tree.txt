@@ -1,0 +1,36 @@
+face-pose-estimation
+├── data
+│   ├── test        测试集数据，其中包含关键点数据
+│   ├── test.txt    测试集图片列表
+│   ├── train       训练集数据
+│   │   └── points  训练集关键点
+│   └── train.txt   测试集图片列表
+└── src
+    ├── +ANN
+    │   ├── estimate.m  ANN预测
+    │   └── train.m     ANN训练
+    ├── +GPR
+    │   ├── SEKernel.m  高斯核函数
+    │   ├── estimate.m  GPR预测
+    │   └── train.m     GPR训练
+    ├── +LS
+    │   ├── estimate.m  LS预测
+    │   └── train.m     LS训练
+    ├── +poly
+    │   ├── estimate.m  多项式预测
+    │   ├── polybase.m  多项式基函数
+    │   └── train.m     多项式训练
+    ├── ANN.mat     训练得到的ANN模型
+    ├── GPR.mat     训练得到的GPR模型
+    ├── LS.mat      训练得到的LS模型
+    ├── poly.mat    训练得到的多项式模型
+    ├── FacePosition.txt    使用ANN模型在测试集上测试的结果
+    ├── detect
+    │   ├── IntraFaceDetector.exe   人脸关键点标记程序及相关文件
+    │   ├── ANN.mat     训练得到的ANN模型
+    │   ├── camera.m    实时摄像头标记
+    │   └── speak.m4v   样例视频
+    ├── load_data.m         读取数据
+    ├── load_testset.m      读取测试集
+    ├── load_trainset.m     读取训练集
+    └── main.m  主程序
