@@ -24,7 +24,7 @@ function [points, features] = load_data(filename, label_dir, unify)
         abs(midx - points(32, 1)) / abs(midx - points(38, 1))...
     ];
 
-    if unify
+    if str2num(unify)
         hight = abs(mean(points([47:49], 2)) - mean(points([3 8], 2)));
         points = points / hight;
         points = bsxfun(@minus, points, mean(points));

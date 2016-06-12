@@ -27,7 +27,7 @@ function cmd_train(img_list, label_dir, method, model_file, unify)
         model_file = method;
     end
     if ~exist('unify', 'var')
-        unify = false;
+        unify = 'false';
     end
 
     filenames = importdata(img_list);
@@ -63,7 +63,7 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
         model_file = method;
     end
     if ~exist('unify', 'var')
-        unify = false;
+        unify = 'false';
     end
 
     filenames = importdata(img_list);
