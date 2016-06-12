@@ -119,7 +119,7 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
 end
 
 function cmd_cam()
-    addpath detect
+    cd detect
     camera
 end
 

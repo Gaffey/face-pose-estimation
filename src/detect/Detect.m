@@ -1,5 +1,5 @@
 function Detect(obj, txt)
-    load net
+    load ANN
     frame = getsnapshot(obj);
     stoppreview(obj);
     frame = imresize(frame, 0.25);
@@ -10,7 +10,7 @@ function Detect(obj, txt)
     points = points / hight;
     points = bsxfun(@minus, points, mean(points));
     xs = points(:);
-    angle = sim(net, xs);
+    angle = sim(model.net, xs);
     set(txt,'Visible','on');
     set(txt,'String',sprintf('%.3f',angle));
 end
