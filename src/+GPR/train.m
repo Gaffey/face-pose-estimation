@@ -3,6 +3,9 @@ function model = train(data, degrees)
     sigma_n = 0.28;
     l = 0.5;
     if size(data, 2) > 5
+        sigma_f = 15;
+        sigma_n = 0.25;
+        l = 12.5;
         [coef, ~] = princomp(data);
         data = data * coef(:,1:3);
     end
