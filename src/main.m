@@ -110,12 +110,12 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
     % guesses(degrees >= 26 & degrees < 37.5) = 30;
     % guesses(degrees >= 37.5 & degrees < 56) = 45;
     % guesses(degrees >= 56) = 67;
-    guesses = repmat([0; 15; 30; 45; -15; -30; -45], [104, 1]);
+    % guesses = repmat([0; 15; 30; 45; -15; -30; -45], [104, 1]);
 
     % [degrees guesses]
 
-    err = nanmean((degrees - guesses).^2);
-    disp(['Estimated MSE = ' num2str(err)]);
+    % err = nanmean((degrees - guesses).^2);
+    % disp(['Estimated MSE = ' num2str(err)]);
 end
 
 function cmd_cam()
