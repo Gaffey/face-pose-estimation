@@ -15,7 +15,7 @@ end
 
 function cmd_train(img_list, label_dir, method, model_file, unify)
     if ~exist('img_list', 'var')
-        img_list = 'ImgTrainList.txt';
+        img_list = 'ImgList.txt';
     end
     if ~exist('label_dir', 'var')
         label_dir = 'label';
@@ -51,7 +51,7 @@ end
 
 function cmd_test(img_list, label_dir, method, model_file, unify)
     if ~exist('img_list', 'var')
-        img_list = 'ImgTrainList.txt';
+        img_list = 'ImgList.txt';
     end
     if ~exist('label_dir', 'var')
         label_dir = 'label';
