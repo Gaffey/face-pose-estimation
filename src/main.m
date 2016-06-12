@@ -35,7 +35,7 @@ function cmd_train(img_list, label_dir, method, model_file, unify)
 
     switch method
         case 'GPR'
-            model = GPR.train(points, degrees);
+            model = GPR.train(features, degrees);
         case 'poly'
             model = poly.train(points, degrees);
         case 'LS'
@@ -72,7 +72,7 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
 
     switch method
         case 'GPR'
-            degrees = GPR.estimate(model, points);
+            degrees = GPR.estimate(model, features!);
         case 'poly'
             degrees = poly.estimate(model, points);
         case 'LS'
