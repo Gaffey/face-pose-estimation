@@ -72,7 +72,7 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
 
     switch method
         case 'GPR'
-            degrees = GPR.estimate(model, features!);
+            degrees = GPR.estimate(model, features);
         case 'poly'
             degrees = poly.estimate(model, points);
         case 'LS'
