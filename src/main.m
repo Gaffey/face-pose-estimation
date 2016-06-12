@@ -131,7 +131,9 @@ function cmd_video(filename)
     obj = VideoReader(filename);
 
     numFrames = obj.NumberOfFrames;
-    for k = 1 : 5: numFrames
+    selected_frames = 1:5:numFrames;
+
+    for k = selected_frames
         frame = read(obj, k);
         frame = imresize(frame, 0.25);
         imshow(frame);
@@ -140,10 +142,12 @@ function cmd_video(filename)
 
         points = load_testset({'detect\snapshot.jpg'}, 'detect', 'true');
         degree = ANN.estimate(model, points);
-        degrees(k) = degree;
-        title(['Angle = ' num2str(degree) ' degree']);
+        degrees = [degrees degree];
+        title(sprintf('Angle = %.1f degree', degree));
         drawnow
     end
 
-    plot(degrees);
+    plot(selected_frames, degrees);
+    xlabel frame
+    ylabel degree
 end
