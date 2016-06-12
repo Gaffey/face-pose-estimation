@@ -123,7 +123,7 @@ end
 
 function cmd_video()
     angles = [];
-    load ANN model
+    load net
     obj = VideoReader(fileName);
     numFrames = obj.NumberOfFrames;
     for k = 1 : 5: numFrames
@@ -137,7 +137,7 @@ function cmd_video()
         points = points / hight;
         points = bsxfun(@minus, points, mean(points));
         xs = points(:);
-        angle = ANN.estimate(model, points(:)')
+        angle = sim(net, xs);
         angles(k) = angle;
         title(['Angle = ' num2str(angle) ' degree']);
         drawnow
