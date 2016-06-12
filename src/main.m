@@ -122,10 +122,14 @@ function cmd_cam()
 end
 
 function cmd_video(filename)
+    if ~exist('filename', 'var')
+        filename = 'detect/speak.mp4';
+    end
+
     degrees = [];
     load('detect/ANN', 'model');
-
     obj = VideoReader(filename);
+
     numFrames = obj.NumberOfFrames;
     for k = 1 : 5: numFrames
         frame = read(obj, k);
