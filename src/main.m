@@ -119,6 +119,8 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
 end
 
 function cmd_cam()
+    addpath detect
+    camera
 end
 
 function cmd_video(filename)
