@@ -99,17 +99,18 @@ function cmd_test(img_list, label_dir, method, model_file, unify)
     end
     fclose(fout);
 
-    guesses = zeros(size(degrees));
-    guesses(degrees < -56) = -67;
-    guesses(degrees >= -56 & degrees < -37.5) = -45;
-    guesses(degrees >= -37.5 & degrees < -26) = -30;
-    guesses(degrees >= -26 & degrees < -18.5) = -22;
-    guesses(degrees >= -18.5 & degrees < -7.5) = -15;
-    guesses(degrees >= 7.5 & degrees < 18.5) = 15;
-    guesses(degrees >= 18.5 & degrees < 26) = 22;
-    guesses(degrees >= 26 & degrees < 37.5) = 30;
-    guesses(degrees >= 37.5 & degrees < 56) = 45;
-    guesses(degrees >= 56) = 67;
+    % guesses = zeros(size(degrees));
+    % guesses(degrees < -56) = -67;
+    % guesses(degrees >= -56 & degrees < -37.5) = -45;
+    % guesses(degrees >= -37.5 & degrees < -26) = -30;
+    % guesses(degrees >= -26 & degrees < -18.5) = -22;
+    % guesses(degrees >= -18.5 & degrees < -7.5) = -15;
+    % guesses(degrees >= 7.5 & degrees < 18.5) = 15;
+    % guesses(degrees >= 18.5 & degrees < 26) = 22;
+    % guesses(degrees >= 26 & degrees < 37.5) = 30;
+    % guesses(degrees >= 37.5 & degrees < 56) = 45;
+    % guesses(degrees >= 56) = 67;
+    guesses = repmat([0; 15; 30; 45; -15; -30; -45], [104, 1]);
 
     % [degrees guesses]
 
