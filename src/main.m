@@ -121,25 +121,25 @@ end
 function cmd_cam()
 end
 
-function cmd_video()
-    angles = [];
-    load net
-    obj = VideoReader(fileName);
+function cmd_video(filename)
+    degrees = [];
+    load('detect/ANN', 'model');
+
+    obj = VideoReader(filename);
     numFrames = obj.NumberOfFrames;
     for k = 1 : 5: numFrames
-        frame = read(obj,k);
+        frame = read(obj, k);
         frame = imresize(frame, 0.25);
         imshow(frame);
-        imwrite(frame,'snapshot.jpg','jpg');
-        system('IntraFaceDetector.exe');
-        points = load('snapshot.txt');
-        hight = abs(mean(points([47:49], 2)) - mean(points([3 8], 2)));
-        points = points / hight;
-        points = bsxfun(@minus, points, mean(points));
-        xs = points(:);
-        angle = sim(net, xs);
-        angles(k) = angle;
-        title(['Angle = ' num2str(angle) ' degree']);
+        imwrite(frame, 'detect/snapshot.jpg', 'jpg');
+        system('detect/IntraFaceDetector.exe');
+
+        points = load_testset('detect/snapshot.jpg', 'detect', 'true');
+        degree = ANN.estimate(model, points);
+        degrees(k) = degree;
+        title(['Angle = ' num2str(andegreegle) ' degree']);
         drawnow
     end
+
+    plot(degrees);
 end
