@@ -2,6 +2,10 @@ function model = train(data, degrees)
     sigma_f = 1250;
     sigma_n = 0.28;
     l = 0.5;
+    if size(data, 2) > 5
+        [coef, ~] = princomp(data);
+        data = data * coef(:,1:3);
+    end
     K_new = GPR.SEKernel(sigma_f, l, data, data);
 
     model = struct('sigma_f', sigma_f, ...
